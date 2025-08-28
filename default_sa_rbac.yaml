@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: default-sa-cluster-pod-node-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods", "nodes"]
+  verbs: ["list", "get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-sa-cluster-pod-node-reader-binding
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default # Specify the namespace of the default ServiceAccount
+roleRef:
+  kind: ClusterRole
+  name: default-sa-cluster-pod-node-reader
+  apiGroup: rbac.authorization.k8s.io
