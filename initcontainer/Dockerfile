@@ -14,4 +14,4 @@ RUN .venv/bin/pip install kubernetes
 COPY init_script.py /app
 ENV PATH=".venv/bin:$PATH"
    
-ENTRYPOINT [ "tail", "-f", "/dev/null" ]
+ENTRYPOINT [ "/app/.venv/bin/python", "/app/init_script.py" ]
